@@ -76,6 +76,7 @@ export function PortfolioLayout() {
 
   return (
     <div className="portfolio-shell" data-theme={theme}>
+      <a className="skip-link" href="#main-content">{language === 'fr' ? 'Aller au contenu' : 'Skip to content'}</a>
       <Sidebar
         language={language}
         isOpen={isMobileMenuOpen}
@@ -141,7 +142,7 @@ export function PortfolioLayout() {
           </div>
         </header>
 
-        <main className="page-content">
+        <main id="main-content" className="page-content" tabIndex={-1}>
           <Outlet context={preferences} />
         </main>
 

@@ -1,6 +1,7 @@
 /** Public Apps Script web-app entry point. Deploy as “execute as me”. */
 function doPost(e) {
   try {
+    if (!e.postData || e.postData.length > 12000) return json_(fail_('INVALID_INPUT', 'Request payload is invalid.'));
     var payload = JSON.parse((e.postData && e.postData.contents) || '{}');
     var result = payload.action === 'availability'
       ? getPublicAvailability_(payload)
