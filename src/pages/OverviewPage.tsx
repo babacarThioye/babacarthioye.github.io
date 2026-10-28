@@ -2,10 +2,13 @@ import { translations } from '../app/translations'
 import { usePortfolioPreferences } from '../app/preferences'
 import { portfolioSections } from '../data/sections'
 import { NavLink } from 'react-router-dom'
+import { ArrowUpRight } from 'lucide-react'
+import { profile, projects } from '../data/portfolio'
 
 export function OverviewPage() {
   const { language } = usePortfolioPreferences()
   const content = translations[language]
+  const isFrench = language === 'fr'
 
   return (
     <div className="overview-page">
@@ -41,7 +44,7 @@ export function OverviewPage() {
             <h3>{content.softwareEngineering}</h3>
             <p>{content.softwareDescription}</p>
             <NavLink to="/projects" aria-label={content.projects}>
-              {content.projects} <span aria-hidden="true">↗</span>
+              {content.projects} <ArrowUpRight size={14} aria-hidden="true" />
             </NavLink>
           </article>
           <article className="focus-card">
@@ -49,18 +52,31 @@ export function OverviewPage() {
             <h3>{content.cybersecurity}</h3>
             <p>{content.cybersecurityDescription}</p>
             <NavLink to="/research" aria-label={content.research}>
-              {content.research} <span aria-hidden="true">↗</span>
+              {content.research} <ArrowUpRight size={14} aria-hidden="true" />
             </NavLink>
           </article>
           <article className="focus-card">
             <span className="focus-card-index">03</span>
             <h3>{content.researchAndDiscovery}</h3>
             <p>{content.researchDescription}</p>
-            <NavLink to="/publication" aria-label={content.publication}>
-              {content.publication} <span aria-hidden="true">↗</span>
+            <NavLink to="/publications" aria-label={content.publications}>
+              {content.publications} <ArrowUpRight size={14} aria-hidden="true" />
             </NavLink>
           </article>
         </div>
+      </section>
+
+      <section className="overview-data-section" aria-labelledby="interests-title">
+        <div className="section-heading-row">
+          <div><p className="page-eyebrow">{isFrench ? 'Profil de recherche' : 'Research profile'}</p><h2 id="interests-title">{isFrench ? 'Mes axes de recherche' : 'Research interests'}</h2></div>
+          <p>{profile.bio}</p>
+        </div>
+        <div className="interest-list">{profile.interests.map((interest) => <span key={interest}>{interest}</span>)}</div>
+      </section>
+
+      <section className="overview-data-section" aria-labelledby="selected-work-title">
+        <div className="section-heading-row"><div><p className="page-eyebrow">{isFrench ? 'Travaux sélectionnés' : 'Selected work'}</p><h2 id="selected-work-title">{isFrench ? 'Projets à la une' : 'Projects in focus'}</h2></div><NavLink className="text-link" to="/projects">{isFrench ? 'Voir tous les projets' : 'View all projects'} <ArrowUpRight size={14} aria-hidden="true" /></NavLink></div>
+        {projects.length ? <div className="work-grid">{projects.map((project) => <article className="work-card" key={project.title}><span>{project.category} · {project.year}</span><h3>{project.title}</h3><p>{project.description}</p><div>{project.stack.map((item) => <b key={item}>{item}</b>)}</div></article>)}</div> : <p className="overview-empty">{isFrench ? 'Les projets publiables seront ajoutés ici.' : 'Publishable project work will be added here.'}</p>}
       </section>
 
       <section className="quick-links">
@@ -69,7 +85,7 @@ export function OverviewPage() {
           {portfolioSections.slice(3).map((section) => (
             <NavLink to={section.path} key={section.id}>
               {content[section.id]}
-              <span aria-hidden="true">↗</span>
+              <ArrowUpRight size={13} aria-hidden="true" />
             </NavLink>
           ))}
         </div>

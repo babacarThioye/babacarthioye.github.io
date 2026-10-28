@@ -1,7 +1,10 @@
+import type { LucideIcon } from 'lucide-react'
+import { Award, BookOpen, BriefcaseBusiness, Contact, FolderKanban, GraduationCap, Microscope, PanelsTopLeft, Wrench } from 'lucide-react'
+
 export type SectionId =
   | 'research'
   | 'projects'
-  | 'publication'
+  | 'publications'
   | 'teaching'
   | 'services'
   | 'awards'
@@ -12,63 +15,53 @@ export type SectionId =
 export interface PortfolioSection {
   id: SectionId
   path: string
-  icon: string
-  descriptionKey: `${SectionId}Placeholder`
+  icon: LucideIcon
 }
 
 export const portfolioSections: PortfolioSection[] = [
   {
     id: 'research',
     path: '/research',
-    icon: '⌕',
-    descriptionKey: 'researchPlaceholder',
+    icon: Microscope,
   },
   {
     id: 'projects',
     path: '/projects',
-    icon: '⌘',
-    descriptionKey: 'projectsPlaceholder',
+    icon: FolderKanban,
   },
   {
-    id: 'publication',
-    path: '/publication',
-    icon: '▤',
-    descriptionKey: 'publicationPlaceholder',
+    id: 'publications',
+    path: '/publications',
+    icon: BookOpen,
   },
   {
     id: 'teaching',
     path: '/teaching',
-    icon: '▧',
-    descriptionKey: 'teachingPlaceholder',
+    icon: PanelsTopLeft,
   },
   {
     id: 'services',
     path: '/services',
-    icon: '◇',
-    descriptionKey: 'servicesPlaceholder',
+    icon: Wrench,
   },
   {
     id: 'awards',
     path: '/awards',
-    icon: '✳',
-    descriptionKey: 'awardsPlaceholder',
+    icon: Award,
   },
   {
     id: 'experiences',
     path: '/experiences',
-    icon: '◷',
-    descriptionKey: 'experiencesPlaceholder',
+    icon: BriefcaseBusiness,
   },
   {
     id: 'education',
     path: '/education',
-    icon: '▱',
-    descriptionKey: 'educationPlaceholder',
+    icon: GraduationCap,
   },
   {
     id: 'contacts',
     path: '/contacts',
-    icon: '↗',
-    descriptionKey: 'contactsPlaceholder',
+    icon: Contact,
   },
 ]

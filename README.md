@@ -1,8 +1,8 @@
 # Babacar Thioye — Portfolio
 
-Portfolio bilingue (français/anglais) réalisé avec React, TypeScript et Vite.
-La navigation utilise des pages dédiées, avec un menu latéral adaptatif et un
-thème clair/sombre mémorisé dans le navigateur.
+Portfolio bilingue (français/anglais) réalisé avec React, TypeScript, Vite,
+Tailwind CSS et Lucide React. Le contenu publiable est centralisé dans
+`src/data/portfolio.ts`.
 
 ## Développement
 
@@ -21,10 +21,10 @@ npm run preview
 
 ## Pages
 
-- `/overview` — Vue d’ensemble
+- `/` — Vue d’ensemble
 - `/research` — Recherche
 - `/projects` — Projets
-- `/publication` — Publications
+- `/publications` — Publications
 - `/teaching` — Enseignement
 - `/services` — Services
 - `/awards` — Prix et distinctions
@@ -40,6 +40,23 @@ npm run preview
 - `src/pages/` — pages du portfolio
 - `src/styles/` — styles de l’application
 
-Les contenus spécifiques aux pages sont à compléter dans
-`src/app/translations.ts`. Les libellés de navigation et leurs chemins se
-trouvent dans `src/data/sections.ts`.
+Les libellés d’interface sont dans `src/app/translations.ts`, les données
+factuelles dans `src/data/portfolio.ts`, et les chemins dans
+`src/data/sections.ts`.
+
+## Déploiement GitHub Pages à la racine
+
+Pour publier le site à `https://babacarthioye.github.io/`, le dépôt qui porte
+ce code doit impérativement être nommé `babacarthioye.github.io`. GitHub Pages
+publie un dépôt de projet à `https://babacarthioye.github.io/<nom-du-dépôt>/`;
+ce préfixe ne peut pas être supprimé depuis Vite ou GitHub Actions.
+
+1. Créer (ou renommer vers) le dépôt `babacarthioye.github.io` sous le compte
+   `babacarthioye`.
+2. Pousser la branche `main`.
+3. Dans **Settings → Pages**, choisir **GitHub Actions** comme source.
+
+Le workflow inclus construit le site, publie l’artefact Pages et ajoute une
+copie `404.html` pour que les routes React soient rendues lors d’un accès
+direct. Pour un déploiement volontaire dans un sous-chemin, définir
+`VITE_BASE_PATH=/nom-du-dépôt/` au moment du build.

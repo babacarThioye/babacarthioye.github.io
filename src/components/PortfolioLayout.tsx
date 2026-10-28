@@ -1,3 +1,4 @@
+import { Menu, Moon, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { translations } from '../app/translations'
@@ -16,24 +17,26 @@ function getStoredPreference<T extends string>(
 
 export function PortfolioLayout() {
   const [language, setLanguage] = useState<Language>(() =>
-    getStoredPreference('portfolio-language', ['fr', 'en'], 'fr'),
+    getStoredPreference('portfolio-language', ['fr', 'en'], 'en'),
   )
   const [theme, setTheme] = useState<Theme>(() =>
-    getStoredPreference('portfolio-theme', ['light', 'dark'], 'light'),
+    getStoredPreference(
+      'portfolio-theme',
+      ['light', 'dark'],
+      window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+    ),
   )
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { pathname } = useLocation()
   const content = translations[language]
   const section = portfolioSections.find((item) => item.path === pathname)
   const pageTitle =
-    pathname === '/overview'
+    pathname === '/' || pathname === '/overview'
       ? content.overview
       : section
         ? content[section.id]
         : content.notFound
-  const pageDescription = section
-    ? content[section.descriptionKey]
-    : content.overviewIntro
+  const pageDescription = section ? content.pageTitles[section.id] : content.overviewIntro
 
   const preferences: PortfolioPreferences = {
     language,
@@ -58,6 +61,14 @@ export function PortfolioLayout() {
       .querySelector<HTMLMetaElement>('meta[name="theme-color"]')
       ?.setAttribute('content', theme === 'dark' ? '#111b22' : '#f7f8f6')
   }, [theme])
+
+  useEffect(() => {
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setIsMobileMenuOpen(false)
+    }
+    window.addEventListener('keydown', closeOnEscape)
+    return () => window.removeEventListener('keydown', closeOnEscape)
+  }, [])
 
   return (
     <div className="portfolio-shell" data-theme={theme}>
@@ -87,7 +98,7 @@ export function PortfolioLayout() {
               aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
             >
-              <span aria-hidden="true">{isMobileMenuOpen ? '×' : '☰'}</span>
+              {isMobileMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
             </button>
             <div>
               <p className="workspace-breadcrumb">{content.brand}</p>
@@ -121,7 +132,7 @@ export function PortfolioLayout() {
                 )
               }
             >
-              <span aria-hidden="true">{theme === 'light' ? '☾' : '☀'}</span>
+              {theme === 'light' ? <Moon size={17} aria-hidden="true" /> : <Sun size={17} aria-hidden="true" />}
             </button>
           </div>
         </header>

@@ -1,3 +1,4 @@
+import { LayoutDashboard } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
 import { translations } from '../app/translations'
 import type { Language } from '../app/types'
@@ -14,7 +15,7 @@ export function Sidebar({ language, isOpen, onNavigate }: SidebarProps) {
 
   return (
     <aside className={`sidebar${isOpen ? ' sidebar-open' : ''}`}>
-      <Link className="sidebar-brand" to="/overview" onClick={onNavigate}>
+      <Link className="sidebar-brand" to="/" onClick={onNavigate}>
         <span className="sidebar-brand-mark" aria-hidden="true">
           BT
         </span>
@@ -37,14 +38,14 @@ export function Sidebar({ language, isOpen, onNavigate }: SidebarProps) {
       <nav className="sidebar-navigation" aria-label={content.navigationLabel}>
         <span className="sidebar-caption">{content.brand}</span>
         <NavLink
-          to="/overview"
+          to="/"
           className={({ isActive }) =>
             `sidebar-link${isActive ? ' sidebar-link-active' : ''}`
           }
           onClick={onNavigate}
         >
           <span className="sidebar-icon" aria-hidden="true">
-            ◫
+            <LayoutDashboard size={16} strokeWidth={1.8} />
           </span>
           <span>{content.overview}</span>
         </NavLink>
@@ -58,9 +59,7 @@ export function Sidebar({ language, isOpen, onNavigate }: SidebarProps) {
             }
             onClick={onNavigate}
           >
-            <span className="sidebar-icon" aria-hidden="true">
-              {section.icon}
-            </span>
+            <span className="sidebar-icon" aria-hidden="true"><section.icon size={16} strokeWidth={1.8} /></span>
             <span>{content[section.id]}</span>
           </NavLink>
         ))}

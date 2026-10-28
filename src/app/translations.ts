@@ -13,7 +13,7 @@ export const translations = {
     overview: 'Vue d’ensemble',
     research: 'Recherche',
     projects: 'Projets',
-    publication: 'Publications',
+    publications: 'Publications',
     teaching: 'Enseignement',
     services: 'Services',
     awards: 'Prix & distinctions',
@@ -44,7 +44,7 @@ export const translations = {
       'Présente ici tes axes de recherche, travaux en cours, méthodologies et collaborations.',
     projectsPlaceholder:
       'Ajoute ici tes projets, avec leur contexte, ton rôle, les technologies utilisées et leurs résultats.',
-    publicationPlaceholder:
+    publicationsPlaceholder:
       'Ajoute ici tes articles, publications scientifiques, rapports ou autres contributions.',
     teachingPlaceholder:
       'Présente ici tes cours, interventions, supports pédagogiques et activités d’encadrement.',
@@ -65,7 +65,7 @@ export const translations = {
       overview: 'Vue d’ensemble',
       research: 'Recherche',
       projects: 'Projets',
-      publication: 'Publications',
+      publications: 'Publications',
       teaching: 'Enseignement',
       services: 'Services',
       awards: 'Prix & distinctions',
@@ -86,7 +86,7 @@ export const translations = {
     overview: 'Overview',
     research: 'Research',
     projects: 'Projects',
-    publication: 'Publications',
+    publications: 'Publications',
     teaching: 'Teaching',
     services: 'Services',
     awards: 'Awards',
@@ -117,7 +117,7 @@ export const translations = {
       'Add your research areas, current work, methodologies, and collaborations here.',
     projectsPlaceholder:
       'Add your projects, including their context, your role, technologies, and outcomes.',
-    publicationPlaceholder:
+    publicationsPlaceholder:
       'Add your articles, research publications, reports, and other contributions here.',
     teachingPlaceholder:
       'Share your courses, talks, teaching materials, and mentoring activities here.',
@@ -138,7 +138,7 @@ export const translations = {
       overview: 'Overview',
       research: 'Research',
       projects: 'Projects',
-      publication: 'Publications',
+      publications: 'Publications',
       teaching: 'Teaching',
       services: 'Services',
       awards: 'Awards',

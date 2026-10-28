@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes, Link } from 'react-router-dom'
 import { PortfolioLayout } from '../components/PortfolioLayout'
 import { OverviewPage } from '../pages/OverviewPage'
 import { SectionPage } from '../pages/SectionPage'
@@ -14,7 +14,7 @@ function NotFoundPage() {
     <section className="not-found-page">
       <p className="page-eyebrow">404</p>
       <h2>{content.notFound}</h2>
-      <Navigate to="/overview" replace />
+      <Link className="primary-button" to="/">{content.backToOverview}</Link>
     </section>
   )
 }
@@ -23,8 +23,8 @@ function PortfolioRoutes() {
   return (
     <Routes>
       <Route element={<PortfolioLayout />}>
-        <Route index element={<Navigate to="/overview" replace />} />
-        <Route path="/overview" element={<OverviewPage />} />
+        <Route index element={<OverviewPage />} />
+        <Route path="/overview" element={<Navigate to="/" replace />} />
         {portfolioSections.map((section) => (
           <Route
             key={section.id}
@@ -32,6 +32,7 @@ function PortfolioRoutes() {
             element={<SectionPage section={section.id} />}
           />
         ))}
+        <Route path="/publication" element={<Navigate to="/publications" replace />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
