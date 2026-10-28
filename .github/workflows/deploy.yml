@@ -23,10 +23,14 @@ jobs:
         with:
           node-version: 22
           cache: npm
+      - id: pages
+        uses: actions/configure-pages@v5
       - run: npm ci
       - run: npm run build
       # Lets the React router render a route reached directly on GitHub Pages.
-      - run: cp dist/index.html dist/404.html
+      - run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist

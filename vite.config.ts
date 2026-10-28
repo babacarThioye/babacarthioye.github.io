@@ -6,7 +6,8 @@ import tailwindcss from '@tailwindcss/vite'
 
 const [repositoryOwner, repositoryName] = (process.env.GITHUB_REPOSITORY ?? '').split('/')
 const isUserPagesRepository =
-  Boolean(repositoryOwner) && repositoryName === `${repositoryOwner.toLowerCase()}.github.io`
+  Boolean(repositoryOwner) &&
+  repositoryName?.toLowerCase() === `${repositoryOwner.toLowerCase()}.github.io`
 const defaultBase = repositoryName && !isUserPagesRepository ? `/${repositoryName}/` : '/'
 
 export default defineConfig({
