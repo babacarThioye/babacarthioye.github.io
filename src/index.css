@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ==========================================
    PORTFOLIO DESIGN SYSTEM
 ========================================== */
@@ -8,27 +10,10 @@
   /* Brand colors */
   --color-primary: #2C3E50;
   --color-secondary: #34495E;
-  --color-muted: #7F8C8D;
-  --color-border: #BDC3C7;
-  --color-surface: #ECF0F1;
-
-  /* Backgrounds */
-  --color-background: #FFFFFF;
-  --color-background-alt: #ECF0F1;
-
-  /* Text */
-  --color-text-primary: #2C3E50;
-  --color-text-secondary: #7F8C8D;
-  --color-text-inverse: #FFFFFF;
-
-  /* Interactive elements */
-  --color-button-primary: #2C3E50;
-  --color-button-hover: #34495E;
-
-  /* Typography */
+  --color-accent: #2563EB;
+  --color-cloud: #ECF0F1;
   --font-sans: "Inter", sans-serif;
-
-  /* Border radius */
+  --font-heading: "Manrope", sans-serif;
   --radius-card: 1rem;
   --radius-button: 0.625rem;
 }
@@ -38,21 +23,9 @@
 ========================================== */
 
 @layer base {
-  body {
-    @apply bg-background text-text-primary font-sans antialiased;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply text-primary font-bold;
-  }
-
-  a {
-    @apply transition-colors duration-200;
-  }
-
-  button {
-    @apply cursor-pointer;
-  }
+  body { @apply bg-ui-bg text-ui-text font-sans antialiased; }
+  h1, h2, h3, h4, h5, h6 { @apply font-heading; }
+  :focus-visible { outline: 2px solid var(--ui-accent); outline-offset: 3px; }
 }
 
 
@@ -61,11 +34,15 @@
 ========================================== */
 
 :root {
-  --app-background: #FFFFFF;
-  --app-surface: #ECF0F1;
-  --app-text: #2C3E50;
-  --app-text-muted: #7F8C8D;
-  --app-border: #BDC3C7;
+  color-scheme: light;
+  --ui-bg: #FFFFFF;
+  --ui-surface: #ECF0F1;
+  --ui-card: #FFFFFF;
+  --ui-text: #2C3E50;
+  --ui-text-secondary: #526475;
+  --ui-border: #DCE3E8;
+  --ui-accent: #2563EB;
+  --ui-accent-foreground: #FFFFFF;
 }
 
 /* ==========================================
@@ -73,17 +50,24 @@
 ========================================== */
 
 .dark {
-  --app-background: #1A2530;
-  --app-surface: #2C3E50;
-  --app-text: #ECF0F1;
-  --app-text-muted: #BDC3C7;
-  --app-border: #34495E;
+  color-scheme: dark;
+  --ui-bg: #111B25;
+  --ui-surface: #172330;
+  --ui-card: #223243;
+  --ui-text: #F1F5F9;
+  --ui-text-secondary: #BDC3C7;
+  --ui-border: #34495E;
+  --ui-accent: #60A5FA;
+  --ui-accent-foreground: #111B25;
 }
 
 @theme inline {
-  --color-app-background: var(--app-background);
-  --color-app-surface: var(--app-surface);
-  --color-app-text: var(--app-text);
-  --color-app-muted: var(--app-text-muted);
-  --color-app-border: var(--app-border);
+  --color-ui-bg: var(--ui-bg);
+  --color-ui-surface: var(--ui-surface);
+  --color-ui-card: var(--ui-card);
+  --color-ui-text: var(--ui-text);
+  --color-ui-text-secondary: var(--ui-text-secondary);
+  --color-ui-border: var(--ui-border);
+  --color-ui-accent: var(--ui-accent);
+  --color-ui-accent-foreground: var(--ui-accent-foreground);
 }

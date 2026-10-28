@@ -1,14 +1,10 @@
 export type Status = 'In progress' | 'Selected work' | 'Open for collaboration'
 
 export const profile = {
-  name: 'Babacar Thioye',
-  title: 'Software Engineer · Cybersecurity Researcher',
-  affiliation: 'Academic & professional portfolio',
   email: undefined,
   location: 'Luxembourg · Available remotely',
   bio: 'I build dependable digital systems and explore the security questions that shape their use. My work connects software engineering, cybersecurity, and applied research.',
   interests: ['Secure software systems', 'Mobile money security', 'Fraud detection', 'AI & LLM security', 'Digital identity'],
-  social: [],
 }
 
 export const researchAreas = [

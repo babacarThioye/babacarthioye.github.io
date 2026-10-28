@@ -9,6 +9,12 @@ export function OverviewPage() {
   const { language } = usePortfolioPreferences()
   const content = translations[language]
   const isFrench = language === 'fr'
+  const biography = isFrench
+    ? 'Je conçois des systèmes numériques fiables et j’étudie les enjeux de sécurité qui accompagnent leurs usages. Mon travail relie ingénierie logicielle, cybersécurité et recherche appliquée.'
+    : profile.bio
+  const interests = isFrench
+    ? ['Systèmes logiciels sécurisés', 'Sécurité du mobile money', 'Détection de la fraude', 'Sécurité de l’IA et des LLM', 'Identité numérique']
+    : profile.interests
 
   return (
     <div className="overview-page">
@@ -69,9 +75,9 @@ export function OverviewPage() {
       <section className="overview-data-section" aria-labelledby="interests-title">
         <div className="section-heading-row">
           <div><p className="page-eyebrow">{isFrench ? 'Profil de recherche' : 'Research profile'}</p><h2 id="interests-title">{isFrench ? 'Mes axes de recherche' : 'Research interests'}</h2></div>
-          <p>{profile.bio}</p>
+          <p>{biography}</p>
         </div>
-        <div className="interest-list">{profile.interests.map((interest) => <span key={interest}>{interest}</span>)}</div>
+        <div className="interest-list">{interests.map((interest) => <span key={interest}>{interest}</span>)}</div>
       </section>
 
       <section className="overview-data-section" aria-labelledby="selected-work-title">
