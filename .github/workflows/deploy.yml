@@ -27,6 +27,9 @@ jobs:
         uses: actions/configure-pages@v5
       - run: npm ci
       - run: npm run build
+        env:
+          # Public Apps Script /exec URL only. Never put credentials in GitHub Variables.
+          VITE_BOOKING_API_URL: ${{ vars.VITE_BOOKING_API_URL }}
       # Lets the React router render a route reached directly on GitHub Pages.
       - run: |
           cp dist/index.html dist/404.html
