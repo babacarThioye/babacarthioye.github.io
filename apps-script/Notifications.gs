@@ -1,6 +1,7 @@
 function ownerEmail_() { return requiredProperty_('OWNER_EMAIL'); }
 function formatRequestTime_(request) { return Utilities.formatDate(new Date(request.start), request.timezone || BOOKING_CONFIG.timezone, "EEEE, d MMMM yyyy HH:mm z"); }
-function notifyNewRequest_(requestId, request) { MailApp.sendEmail(ownerEmail_(), 'New pending booking request ' + requestId, request.name + ' (' + request.email + ') requested ' + request.meetingTypeId + ' at ' + formatRequestTime_(request) + '. To review safely: set Script Property REQUEST_ID_TO_REVIEW to this reference, then run approveConfiguredRequest_ or rejectConfiguredRequest_ from the authenticated Apps Script editor.'); }
-function notifyRequestReceived_(requestId, request) { MailApp.sendEmail(request.email, request.language === 'fr' ? 'Demande de rendez-vous reçue' : 'Meeting request received', request.language === 'fr' ? 'Votre demande (' + requestId + ') est en attente d’examen. Aucun rendez-vous n’est confirmé à ce stade.' : 'Your request (' + requestId + ') is pending review. No meeting is confirmed yet.'); }
-function notifyApproved_(requestId, request) { MailApp.sendEmail(request.email, 'Meeting request approved', 'Your meeting request ' + requestId + ' has been approved for ' + formatRequestTime_(request) + '. Timezone: ' + request.timezone + '.'); }
-function notifyRejected_(requestId, request) { MailApp.sendEmail(request.email, 'Meeting request update', 'Your meeting request ' + requestId + ' could not be approved.'); }
+function notifyBookingConfirmed_(requestId, request) {
+  var time = formatRequestTime_(request);
+  MailApp.sendEmail(ownerEmail_(), 'Confirmed booking ' + requestId, request.name + ' (' + request.email + ') booked ' + request.meetingTypeId + ' at ' + time + '. Subject: ' + request.subject + '.');
+  MailApp.sendEmail(request.email, request.language === 'fr' ? 'Rendez-vous confirmé' : 'Meeting confirmed', request.language === 'fr' ? 'Votre rendez-vous est confirmé pour le ' + time + '. Référence : ' + requestId + '.' : 'Your meeting is confirmed for ' + time + '. Reference: ' + requestId + '.');
+}

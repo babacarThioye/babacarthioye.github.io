@@ -1,3 +1,0 @@
-function assertOwner_() { if (Session.getEffectiveUser().getEmail() !== requiredProperty_('OWNER_EMAIL')) throw new Error('UNAUTHORIZED'); }
-function findPending_(requestId) { var events = pendingCalendar_().getEvents(new Date(0), new Date('2100-01-01')); for (var i = 0; i < events.length; i++) { var description = events[i].getDescription(); try { var data = JSON.parse(description); if (data.requestId === requestId) { data.eventId = events[i].getId(); return data; } } catch (_) {} } return null; }
-function savePending_(requestId, data) { var event = pendingCalendar_().getEventById(data.eventId); if (!event) throw new Error('REQUEST_NOT_FOUND'); event.setDescription(JSON.stringify(data)); }

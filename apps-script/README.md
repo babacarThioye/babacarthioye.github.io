@@ -6,14 +6,12 @@ never exposes credentials to the browser.
 
 ## Setup
 
-1. Create two private Google Calendars: one for confirmed appointments and one
-   for pending requests.
+1. Create a private Google Calendar for confirmed appointments.
 2. Create a standalone Apps Script project owned by the portfolio owner and
    copy the `.gs` files and `appsscript.json` into it.
 3. In **Project settings → Script properties**, add:
    - `OWNER_EMAIL`
    - `CONFIRMED_CALENDAR_ID`
-   - `PENDING_CALENDAR_ID`
 4. Review the working-hours configuration in `Config.gs`.
 5. Deploy as a Web App, executing as the owner. The public deployment must
    allow anonymous access only if public booking is required.
@@ -24,28 +22,19 @@ never exposes credentials to the browser.
 7. Put the resulting `/exec` URL in the GitHub Pages build environment as
    `VITE_BOOKING_API_URL`. This URL is public configuration, not a secret.
 
-## Approval
+## Immediate confirmation
 
-Do not create a public approval endpoint. The owner notification includes a
-request reference. To approve or reject it safely:
-
-1. Open **Apps Script → Project settings → Script properties**.
-2. Set `REQUEST_ID_TO_REVIEW` to the reference shown in the e-mail.
-3. In the authenticated Apps Script editor, select and run either
-   `approveConfiguredRequest_` or `rejectConfiguredRequest_`.
-4. The property is deleted after the operation. The visitor receives the
-   corresponding notification.
-
-`approveConfiguredRequest_` verifies the owner identity, acquires a script
-lock, and re-checks availability before creating the confirmed event.
+The public endpoint confirms a booking immediately. In the same `LockService`
+critical section, it rechecks availability and creates the event. It then sends
+one confirmation e-mail to the owner and one to the visitor. A conflict returns
+`SLOT_UNAVAILABLE` and no event is created.
 
 ## Operational limits
 
 Apps Script and MailApp quotas apply. Check `MailApp.getRemainingDailyQuota()`
 before bulk operations and use a dedicated test calendar before production.
-Pending requests retain personal information in the private pending calendar;
-set a time-driven Apps Script trigger to expire and delete/anonymize stale
-requests according to your retention policy and legal review.
+Confirmed calendar events retain personal information. Define a retention and
+deletion policy appropriate for your organisation and legal obligations.
 
 ## Security notes
 

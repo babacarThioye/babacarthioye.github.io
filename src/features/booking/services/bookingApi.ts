@@ -23,5 +23,5 @@ export function getAvailableSlots(date: string, meetingTypeId: string, timezone:
 }
 
 export function submitBooking(requestData: BookingRequest) {
-  return request<{ requestId: string; status: 'pending' }>({ action: 'submit', request: requestData })
+  return request<{ requestId: string; status: 'approved' }>({ action: 'submit', request: requestData })
 }

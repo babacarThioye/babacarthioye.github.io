@@ -5,7 +5,7 @@ function doPost(e) {
     var result = payload.action === 'availability'
       ? getPublicAvailability_(payload)
       : payload.action === 'submit'
-        ? createPendingRequest_(payload.request)
+        ? createConfirmedBooking_(payload.request)
         : fail_('INVALID_INPUT', 'Unsupported operation.');
     return json_(result);
   } catch (error) {

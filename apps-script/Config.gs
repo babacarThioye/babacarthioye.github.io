@@ -25,4 +25,3 @@ function requiredProperty_(name) {
   return value;
 }
 function confirmedCalendar_() { return CalendarApp.getCalendarById(requiredProperty_('CONFIRMED_CALENDAR_ID')); }
-function pendingCalendar_() { return CalendarApp.getCalendarById(requiredProperty_('PENDING_CALENDAR_ID')); }
