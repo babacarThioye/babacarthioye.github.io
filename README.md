@@ -31,6 +31,7 @@ npm run preview
 - `/experiences` — Expériences
 - `/education` — Formation
 - `/contacts` — Contacts
+- `/booking` — Demande de rendez-vous, avec approbation manuelle
 
 ## Organisation du code
 
@@ -43,6 +44,13 @@ npm run preview
 Les libellés d’interface sont dans `src/app/translations.ts`, les données
 factuelles dans `src/data/portfolio.ts`, et les chemins dans
 `src/data/sections.ts`.
+
+## Réservations
+
+La page `/booking` n’affiche jamais de faux créneaux. Son interface est prête,
+mais le service reste indisponible tant que `VITE_BOOKING_API_URL` n’est pas
+configuré lors du build. Le code Google Apps Script et les instructions de
+déploiement sont dans [`apps-script/README.md`](apps-script/README.md).
 
 ## Déploiement GitHub Pages à la racine
 

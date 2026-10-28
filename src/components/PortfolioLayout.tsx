@@ -33,10 +33,14 @@ export function PortfolioLayout() {
   const pageTitle =
     pathname === '/' || pathname === '/overview'
       ? content.overview
+      : pathname === '/booking'
+        ? language === 'fr' ? 'Rendez-vous' : 'Booking'
       : section
         ? content[section.id]
         : content.notFound
-  const pageDescription = section ? content.pageTitles[section.id] : content.overviewIntro
+  const pageDescription = pathname === '/booking'
+    ? language === 'fr' ? 'Demander un rendez-vous.' : 'Request a meeting.'
+    : section ? content.pageTitles[section.id] : content.overviewIntro
 
   const preferences: PortfolioPreferences = {
     language,

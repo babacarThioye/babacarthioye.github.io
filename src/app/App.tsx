@@ -2,6 +2,7 @@ import { Navigate, Route, Routes, Link } from 'react-router-dom'
 import { PortfolioLayout } from '../components/PortfolioLayout'
 import { OverviewPage } from '../pages/OverviewPage'
 import { SectionPage } from '../pages/SectionPage'
+import { BookingPage } from '../features/booking/BookingPage'
 import { portfolioSections } from '../data/sections'
 import { translations } from './translations'
 import { usePortfolioPreferences } from './preferences'
@@ -33,6 +34,7 @@ function PortfolioRoutes() {
           />
         ))}
         <Route path="/publication" element={<Navigate to="/publications" replace />} />
+        <Route path="/booking" element={<BookingPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     </Routes>
