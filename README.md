@@ -58,5 +58,7 @@ ce préfixe ne peut pas être supprimé depuis Vite ou GitHub Actions.
 
 Le workflow inclus construit le site, publie l’artefact Pages et ajoute une
 copie `404.html` pour que les routes React soient rendues lors d’un accès
-direct. Pour un déploiement volontaire dans un sous-chemin, définir
-`VITE_BASE_PATH=/nom-du-dépôt/` au moment du build.
+direct. Il détecte automatiquement le nom du dépôt : le dépôt actuel produit
+les assets sous `/portfolio-babacar/`, tandis que le dépôt
+`babacarthioye.github.io` les produira à la racine. Pour un build local qui
+reproduit le site de projet actuel : `VITE_BASE_PATH=/portfolio-babacar/ npm run build`.

@@ -4,12 +4,17 @@ import react from '@vitejs/plugin-react'
 
 import tailwindcss from '@tailwindcss/vite'
 
+const [repositoryOwner, repositoryName] = (process.env.GITHUB_REPOSITORY ?? '').split('/')
+const isUserPagesRepository =
+  Boolean(repositoryOwner) && repositoryName === `${repositoryOwner.toLowerCase()}.github.io`
+const defaultBase = repositoryName && !isUserPagesRepository ? `/${repositoryName}/` : '/'
+
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
   ],
-  // A user Pages site is served from https://<user>.github.io/.
-  // Set VITE_BASE_PATH only when deliberately deploying below a subpath.
-  base: process.env.VITE_BASE_PATH ?? '/',
+  // Project Pages sites use /<repository>/; a <user>.github.io repository uses /.
+  // GitHub Actions exposes GITHUB_REPOSITORY, so this adapts automatically after migration.
+  base: process.env.VITE_BASE_PATH ?? defaultBase,
 })
