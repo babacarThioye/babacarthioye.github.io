@@ -6,15 +6,15 @@ type Theme = 'light' | 'dark'
 
 const translations = {
   fr: {
-    pageTitle: 'Babacar Thioye — Ingénierie logicielle & cybersécurité',
+    pageTitle: 'Babacar THIOYE — Ingénierie logicielle & cybersécurité',
     pageDescription:
-      'Babacar Thioye, ingénieur logiciel et chercheur en cybersécurité. Des solutions numériques utiles, robustes et sécurisées.',
-    home: 'Babacar Thioye, accueil',
+      'Babacar THIOYE, ingénieur logiciel et chercheur en cybersécurité. Des solutions numériques utiles, robustes et sécurisées.',
+    home: 'Babacar THIOYE, accueil',
     navigation: 'Navigation principale',
     aboutNav: 'À propos',
     expertiseNav: 'Expertises',
     projectsNav: 'Projets',
-    contactNav: 'Me contacter',
+    contactNav: 'Me Contacter',
     languageLabel: 'Switch language to English',
     themeLabel: 'Mode sombre',
     themeDarkLabel: 'Mode clair',
@@ -24,7 +24,7 @@ const translations = {
     heroTitleSecond: 'bien pensé.',
     heroTitleThird: 'Bien protégé.',
     heroDescription:
-      'Je suis Babacar Thioye, ingénieur logiciel et chercheur en cybersécurité. J’imagine des solutions numériques utiles, robustes et sécurisées.',
+      'Je suis Babacar THIOYE, ingénieur logiciel et chercheur en cybersécurité. J’imagine des solutions numériques utiles, robustes et sécurisées.',
     discoverExpertise: 'Découvrir mes expertises',
     learnMore: 'En savoir plus',
     heroArtLabel: 'Construire, sécuriser, faire évoluer',
@@ -98,7 +98,7 @@ const translations = {
     heroTitleSecond: 'thoughtfully built.',
     heroTitleThird: 'Secure by design.',
     heroDescription:
-      'I’m Babacar Thioye, a software engineer and cybersecurity researcher. I build useful, resilient, and secure digital solutions.',
+      'I’m Babacar THIOYE, a software engineer and cybersecurity researcher. I build useful, resilient, and secure digital solutions.',
     discoverExpertise: 'Explore my expertise',
     learnMore: 'Learn more',
     heroArtLabel: 'Build, secure, evolve',
