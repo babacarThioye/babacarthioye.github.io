@@ -13,6 +13,6 @@ export default defineConfig({
     tailwindcss(),
 
   ],
-  base: '/babacar-portfolio/',
+  base: '/portfolio-babacar/',
 
 })
