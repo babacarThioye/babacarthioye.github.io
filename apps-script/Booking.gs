@@ -5,7 +5,7 @@ function createPendingRequest_(request) {
     var existing = properties_().getProperty('idempotency:' + request.idempotencyKey); if (existing) return { success: true, data: { requestId: existing, status: 'pending' } };
     var start = new Date(request.start); var end = new Date(start.getTime() + BOOKING_CONFIG.meetingTypes[request.meetingTypeId] * 60000); if (!isSlotAvailable_(start, end)) return fail_('SLOT_UNAVAILABLE', 'This time is no longer available.');
     var requestId = Utilities.getUuid(); var event = pendingCalendar_().createEvent('[PENDING] ' + requestId, start, end, { description: JSON.stringify({ requestId: requestId, request: request, status: 'pending', createdAt: new Date().toISOString() }) }); event.setTransparency(CalendarApp.EventTransparency.TRANSPARENT);
-    properties_().setProperty('idempotency:' + request.idempotencyKey, requestId); notifyNewRequest_(requestId, request); return { success: true, data: { requestId: requestId, status: 'pending' } };
+    properties_().setProperty('idempotency:' + request.idempotencyKey, requestId); notifyNewRequest_(requestId, request); notifyRequestReceived_(requestId, request); return { success: true, data: { requestId: requestId, status: 'pending' } };
   } finally { lock.releaseLock(); }
 }
 

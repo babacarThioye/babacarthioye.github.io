@@ -26,10 +26,18 @@ never exposes credentials to the browser.
 
 ## Approval
 
-Do not create a public approval endpoint. Run `approveRequest_(requestId)` or
-`rejectRequest_(requestId, reason)` only from the owner’s authenticated Apps
-Script environment. These functions verify the configured owner, acquire a
-script lock, then re-check calendar availability before creating an event.
+Do not create a public approval endpoint. The owner notification includes a
+request reference. To approve or reject it safely:
+
+1. Open **Apps Script → Project settings → Script properties**.
+2. Set `REQUEST_ID_TO_REVIEW` to the reference shown in the e-mail.
+3. In the authenticated Apps Script editor, select and run either
+   `approveConfiguredRequest_` or `rejectConfiguredRequest_`.
+4. The property is deleted after the operation. The visitor receives the
+   corresponding notification.
+
+`approveConfiguredRequest_` verifies the owner identity, acquires a script
+lock, and re-checks availability before creating the confirmed event.
 
 ## Operational limits
 
