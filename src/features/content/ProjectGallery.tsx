@@ -1,0 +1,7 @@
+import { useMemo, useState } from 'react'
+import { Search } from 'lucide-react'
+import { projects } from '../../data/portfolio'
+import type { ContentCopy } from './pageCopy'
+import { EmptyState } from './EmptyState'
+
+export function ProjectGallery({ copy }: { copy: ContentCopy }) { const [query, setQuery] = useState(''); const [category, setCategory] = useState<string>(copy.all); const categories = [copy.all, ...new Set(projects.map((project) => project.category))]; const visible = useMemo(() => projects.filter((project) => (category === copy.all || project.category === category) && `${project.title} ${project.description} ${project.stack.join(' ')}`.toLowerCase().includes(query.toLowerCase())), [category, query, copy.all]); if (!projects.length) return <EmptyState label={copy.empty} text={copy.emptyText} />; return <><div className="filter-bar"><label><span className="sr-only">{copy.search}</span><Search size={16} aria-hidden="true"/><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder={copy.search} /></label><div>{categories.map((item) => <button className={category === item ? 'filter-active' : ''} type="button" onClick={() => setCategory(item)} key={item}>{item}</button>)}</div></div><div className="work-grid">{visible.map((project) => <article className="work-card" key={project.title}><span>{project.category} · {project.year}</span><h3>{project.title}</h3><p>{project.description}</p><div>{project.stack.map((item) => <b key={item}>{item}</b>)}</div><small>{project.status}</small></article>)}</div></> }

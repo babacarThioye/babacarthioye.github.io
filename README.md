@@ -41,7 +41,8 @@ npm run preview
 - `src/pages/` — pages du portfolio
 - `src/styles/` — styles de l’application
 
-Les libellés d’interface sont dans `src/app/translations.ts`, les données
+Les ressources de traduction i18next sont dans `src/app/translations.ts`,
+l’initialisation du module est dans `src/app/i18n.ts`, les données
 factuelles dans `src/data/portfolio.ts`, et les chemins dans
 `src/data/sections.ts`.
 

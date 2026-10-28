@@ -1,6 +1,7 @@
 import { Menu, Moon, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { translations } from '../app/translations'
 import type { Language, PortfolioPreferences, Theme } from '../app/types'
 import { portfolioSections } from '../data/sections'
@@ -16,6 +17,7 @@ function getStoredPreference<T extends string>(
 }
 
 export function PortfolioLayout() {
+  const { i18n } = useTranslation()
   const [language, setLanguage] = useState<Language>(() =>
     getStoredPreference('portfolio-language', ['fr', 'en'], 'en'),
   )
@@ -51,12 +53,13 @@ export function PortfolioLayout() {
 
   useEffect(() => {
     localStorage.setItem('portfolio-language', language)
+    void i18n.changeLanguage(language)
     document.documentElement.lang = language
     document.title = `${pageTitle} — Babacar Thioye`
     document
       .querySelector<HTMLMetaElement>('meta[name="description"]')
       ?.setAttribute('content', pageDescription)
-  }, [language, pageDescription, pageTitle])
+  }, [i18n, language, pageDescription, pageTitle])
 
   useEffect(() => {
     localStorage.setItem('portfolio-theme', theme)
