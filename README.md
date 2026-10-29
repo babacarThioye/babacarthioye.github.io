@@ -22,16 +22,18 @@ npm run preview
 ## Pages
 
 - `/` — Vue d’ensemble
+- `/dashboard` — Indicateurs publics
 - `/research` — Recherche
 - `/projects` — Projets
 - `/publications` — Publications
 - `/teaching` — Enseignement
+- `/students` — Étudiants encadrés
 - `/services` — Services
 - `/awards` — Prix et distinctions
 - `/experiences` — Expériences
 - `/education` — Formation
 - `/contacts` — Contacts
-- `/booking` — Demande de rendez-vous, avec approbation manuelle
+- `/booking` — Demande de rendez-vous et confirmation automatique
 
 ## Organisation du code
 
@@ -41,8 +43,7 @@ npm run preview
 - `src/pages/` — pages du portfolio
 - `src/styles/` — styles de l’application
 
-Les ressources de traduction i18next sont dans `src/app/translations.ts`,
-l’initialisation du module est dans `src/app/i18n.ts`, les données
+Les traductions centralisées sont dans `src/app/translations.ts`, les données
 factuelles dans `src/data/portfolio.ts`, et les chemins dans
 `src/data/sections.ts`.
 

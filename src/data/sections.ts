@@ -1,7 +1,8 @@
 import type { LucideIcon } from 'lucide-react'
-import { Award, BookOpen, BriefcaseBusiness, Contact, FolderKanban, GraduationCap, Microscope, PanelsTopLeft, Wrench } from 'lucide-react'
+import { Award, BarChart3, BookOpen, BriefcaseBusiness, Contact, FolderKanban, GraduationCap, Microscope, PanelsTopLeft, UsersRound, Wrench } from 'lucide-react'
 
 export type SectionId =
+  | 'dashboard'
   | 'research'
   | 'projects'
   | 'publications'
@@ -11,6 +12,7 @@ export type SectionId =
   | 'experiences'
   | 'education'
   | 'contacts'
+  | 'students'
 
 export interface PortfolioSection {
   id: SectionId
@@ -19,6 +21,11 @@ export interface PortfolioSection {
 }
 
 export const portfolioSections: PortfolioSection[] = [
+  {
+    id: 'dashboard',
+    path: '/dashboard',
+    icon: BarChart3,
+  },
   {
     id: 'research',
     path: '/research',
@@ -38,6 +45,11 @@ export const portfolioSections: PortfolioSection[] = [
     id: 'teaching',
     path: '/teaching',
     icon: PanelsTopLeft,
+  },
+  {
+    id: 'students',
+    path: '/students',
+    icon: UsersRound,
   },
   {
     id: 'services',

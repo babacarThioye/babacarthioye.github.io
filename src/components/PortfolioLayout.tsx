@@ -2,7 +2,6 @@ import { Menu, Moon, Sun, X } from 'lucide-react'
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { translations } from '../app/translations'
 import type { Language, PortfolioPreferences, Theme } from '../app/types'
 import { portfolioSections } from '../data/sections'
 import { Sidebar } from './Sidebar'
@@ -17,7 +16,7 @@ function getStoredPreference<T extends string>(
 }
 
 export function PortfolioLayout() {
-  const { i18n } = useTranslation()
+  const { t, i18n } = useTranslation()
   const [language, setLanguage] = useState<Language>(() =>
     getStoredPreference('portfolio-language', ['fr', 'en'], 'en'),
   )
@@ -30,19 +29,18 @@ export function PortfolioLayout() {
   )
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { pathname } = useLocation()
-  const content = translations[language]
   const section = portfolioSections.find((item) => item.path === pathname)
   const pageTitle =
     pathname === '/' || pathname === '/overview'
-      ? content.overview
+      ? t('overview')
       : pathname === '/booking'
         ? language === 'fr' ? 'Rendez-vous' : 'Booking'
       : section
-        ? content[section.id]
-        : content.notFound
+        ? t(section.id)
+        : t('notFound')
   const pageDescription = pathname === '/booking'
     ? language === 'fr' ? 'Demander un rendez-vous.' : 'Request a meeting.'
-    : section ? content.pageTitles[section.id] : content.overviewIntro
+    : section ? t(`pageTitles.${section.id}`) : t('siteDescription')
 
   const preferences: PortfolioPreferences = {
     language,
@@ -81,7 +79,6 @@ export function PortfolioLayout() {
     <div className="portfolio-shell" data-theme={theme}>
       <a className="skip-link" href="#main-content">{language === 'fr' ? 'Aller au contenu' : 'Skip to content'}</a>
       <Sidebar
-        language={language}
         isOpen={isMobileMenuOpen}
         onNavigate={() => setIsMobileMenuOpen(false)}
       />
@@ -89,7 +86,7 @@ export function PortfolioLayout() {
         <button
           className="sidebar-backdrop"
           type="button"
-          aria-label={content.closeMenuLabel}
+          aria-label={t('closeMenuLabel')}
           onClick={() => setIsMobileMenuOpen(false)}
         />
       )}
@@ -101,7 +98,7 @@ export function PortfolioLayout() {
               className="mobile-menu-button"
               type="button"
               aria-label={
-                isMobileMenuOpen ? content.closeMenuLabel : content.menuLabel
+                isMobileMenuOpen ? t('closeMenuLabel') : t('menuLabel')
               }
               aria-expanded={isMobileMenuOpen}
               onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
@@ -109,7 +106,7 @@ export function PortfolioLayout() {
               {isMobileMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
             </button>
             <div>
-              <p className="workspace-breadcrumb">{content.brand}</p>
+              <p className="workspace-breadcrumb">{t('brand')}</p>
               <h1 className="workspace-title">{pageTitle}</h1>
             </div>
           </div>
@@ -118,8 +115,8 @@ export function PortfolioLayout() {
             <button
               className="toolbar-button language-button"
               type="button"
-              aria-label={content.languageLabel}
-              title={content.languageLabel}
+              aria-label={t('languageLabel')}
+              title={t('languageLabel')}
               onClick={() => setLanguage(language === 'fr' ? 'en' : 'fr')}
             >
               {language === 'fr' ? 'EN' : 'FR'}
@@ -128,10 +125,10 @@ export function PortfolioLayout() {
               className="toolbar-button theme-button"
               type="button"
               aria-label={
-                theme === 'light' ? content.themeLabel : content.lightThemeLabel
+                theme === 'light' ? t('themeLabel') : t('lightThemeLabel')
               }
               title={
-                theme === 'light' ? content.themeLabel : content.lightThemeLabel
+                theme === 'light' ? t('themeLabel') : t('lightThemeLabel')
               }
               aria-pressed={theme === 'dark'}
               onClick={() =>
@@ -150,9 +147,9 @@ export function PortfolioLayout() {
         </main>
 
         <footer className="workspace-footer">
-          <span>{content.footer}</span>
+          <span>{t('footer')}</span>
           <span>© {new Date().getFullYear()} Babacar Thioye</span>
-          <NavLink to="/contacts">{content.contacts}</NavLink>
+          <NavLink to="/contacts">{t('contacts')}</NavLink>
         </footer>
       </div>
     </div>

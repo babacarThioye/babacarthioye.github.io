@@ -1,17 +1,15 @@
 import { LayoutDashboard } from 'lucide-react'
 import { Link, NavLink } from 'react-router-dom'
-import { translations } from '../app/translations'
-import type { Language } from '../app/types'
+import { useTranslation } from 'react-i18next'
 import { portfolioSections } from '../data/sections'
 
 interface SidebarProps {
-  language: Language
   isOpen: boolean
   onNavigate: () => void
 }
 
-export function Sidebar({ language, isOpen, onNavigate }: SidebarProps) {
-  const content = translations[language]
+export function Sidebar({ isOpen, onNavigate }: SidebarProps) {
+  const { t } = useTranslation()
 
   return (
     <aside className={`sidebar${isOpen ? ' sidebar-open' : ''}`}>
@@ -21,7 +19,7 @@ export function Sidebar({ language, isOpen, onNavigate }: SidebarProps) {
         </span>
         <span className="sidebar-brand-copy">
           <strong>Babacar Thioye</strong>
-          <span>{content.brand}</span>
+          <span>{t('brand')}</span>
         </span>
       </Link>
 
@@ -31,12 +29,12 @@ export function Sidebar({ language, isOpen, onNavigate }: SidebarProps) {
         </span>
         <div>
           <strong>Babacar Thioye</strong>
-          <span>{content.sidebarDescription}</span>
+          <span>{t('sidebarDescription')}</span>
         </div>
       </div>
 
-      <nav className="sidebar-navigation" aria-label={content.navigationLabel}>
-        <span className="sidebar-caption">{content.brand}</span>
+      <nav className="sidebar-navigation" aria-label={t('navigationLabel')}>
+        <span className="sidebar-caption">{t('brand')}</span>
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -47,7 +45,7 @@ export function Sidebar({ language, isOpen, onNavigate }: SidebarProps) {
           <span className="sidebar-icon" aria-hidden="true">
             <LayoutDashboard size={16} strokeWidth={1.8} />
           </span>
-          <span>{content.overview}</span>
+          <span>{t('overview')}</span>
         </NavLink>
 
         {portfolioSections.map((section) => (
@@ -60,7 +58,7 @@ export function Sidebar({ language, isOpen, onNavigate }: SidebarProps) {
             onClick={onNavigate}
           >
             <span className="sidebar-icon" aria-hidden="true"><section.icon size={16} strokeWidth={1.8} /></span>
-            <span>{content[section.id]}</span>
+            <span>{t(section.id)}</span>
           </NavLink>
         ))}
       </nav>

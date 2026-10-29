@@ -3,8 +3,6 @@ export type Status = 'In progress' | 'Selected work' | 'Open for collaboration'
 export const profile = {
   email: undefined,
   location: 'Luxembourg · Available remotely',
-  bio: 'I build dependable digital systems and explore the security questions that shape their use. My work connects software engineering, cybersecurity, and applied research.',
-  interests: ['Secure software systems', 'Mobile money security', 'Fraud detection', 'AI & LLM security', 'Digital identity'],
 }
 
 export const researchAreas = [
@@ -20,6 +18,22 @@ export const projects: Project[] = []
 
 export const publications = [] as { title: string; authors: string; venue: string; year: string; type: string; abstract: string }[]
 export const awards = [] as { title: string; institution: string; year: string; category: string }[]
+
+/** Keep this value in sync with the public profile used as the citation source. */
+export const researchMetrics = {
+  citations: undefined as number | undefined,
+}
+
+export interface SupervisedStudent {
+  name: string
+  level: string
+  topic: string
+  period: string
+  status: 'current' | 'completed'
+}
+
+// Only list students who have agreed to be named publicly.
+export const supervisedStudents: SupervisedStudent[] = []
 
 export const timeline = {
   experiences: [{ title: 'Professional experience', org: 'To be added', period: 'Current', description: 'Add a verified role, responsibilities, outcomes, and technologies from the portfolio data file.' }],
