@@ -22,7 +22,6 @@ npm run preview
 ## Pages
 
 - `/` — Vue d’ensemble
-- `/dashboard` — Indicateurs publics
 - `/research` — Recherche
 - `/projects` — Projets
 - `/publications` — Publications

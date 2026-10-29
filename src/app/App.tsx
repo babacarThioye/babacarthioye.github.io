@@ -14,7 +14,6 @@ const AwardsPage = lazy(() => import('../pages/AwardsPage').then(({ AwardsPage }
 const ExperiencesPage = lazy(() => import('../pages/ExperiencesPage').then(({ ExperiencesPage }) => ({ default: ExperiencesPage })))
 const EducationPage = lazy(() => import('../pages/EducationPage').then(({ EducationPage }) => ({ default: EducationPage })))
 const ContactsPage = lazy(() => import('../pages/ContactsPage').then(({ ContactsPage }) => ({ default: ContactsPage })))
-const DashboardPage = lazy(() => import('../pages/DashboardPage').then(({ DashboardPage }) => ({ default: DashboardPage })))
 const StudentsPage = lazy(() => import('../pages/StudentsPage').then(({ StudentsPage }) => ({ default: StudentsPage })))
 
 function NotFoundPage() {
@@ -35,7 +34,6 @@ function PortfolioRoutes() {
       <Route element={<PortfolioLayout />}>
         <Route index element={<OverviewPage />} />
         <Route path="/overview" element={<Navigate to="/" replace />} />
-        <Route path="/dashboard" element={<Suspense fallback={null}><DashboardPage /></Suspense>} />
         <Route path="/research" element={<Suspense fallback={null}><ResearchPage /></Suspense>} />
         <Route path="/projects" element={<Suspense fallback={null}><ProjectsPage /></Suspense>} />
         <Route path="/publications" element={<Suspense fallback={null}><PublicationsPage /></Suspense>} />
